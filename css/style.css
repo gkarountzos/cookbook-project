@@ -1,0 +1,23 @@
+:root {
+  --maincolor: #395144;
+  --secondary: #f0ebce;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--secondary);
+}
+
+.navbar-brand {
+  margin: 0;
+}
+
+nav img {
+  width: 30%;
+  height: auto;
+  /* border-radius: 50%; */
+}
+
+nav {
+  background-color: var(--maincolor);
+}

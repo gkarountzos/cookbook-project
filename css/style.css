@@ -8,16 +8,15 @@ body {
   background-color: var(--secondary);
 }
 
-.navbar-brand {
-  margin: 0;
+nav {
+  background-color: var(--maincolor);
+}
+
+.navbar {
+  align-items: center;
 }
 
 nav img {
-  width: 30%;
+  width: 140px;
   height: auto;
-  /* border-radius: 50%; */
-}
-
-nav {
-  background-color: var(--maincolor);
 }

@@ -12,11 +12,16 @@ nav {
   background-color: var(--maincolor);
 }
 
-.navbar {
-  align-items: center;
+.navbar-brand img {
+  margin-bottom: 3px;
 }
 
 nav img {
   width: 140px;
   height: auto;
+}
+
+nav button img {
+  width: 20px;
+  margin-bottom: 2px;
 }

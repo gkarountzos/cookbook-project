@@ -25,3 +25,8 @@ nav button img {
   width: 20px;
   margin-bottom: 2px;
 }
+
+.logo-form img {
+  width: 15%;
+  border-radius: 50%;
+}

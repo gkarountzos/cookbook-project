@@ -14,7 +14,7 @@
                     <?php
                     if (isset($_SESSION["fname"])) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="profilepage.php"><?php echo "Hi " . $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
+                            <a class="nav-link" href="profilepage.php"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
@@ -25,7 +25,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <form action="logout.php" method="POST">
-                                    <a class="dropdown-item" href="settings.php">Settings</a>
+                                    <a class="dropdown-item text-center" href="settings.php">Settings</a>
                                     <div class="text-center mt-3">
                                         <button type="submit" name="logout" class="btn btn-danger">Disconnect</button>
                                     </div>

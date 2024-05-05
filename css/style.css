@@ -30,3 +30,11 @@ nav button img {
   width: 15%;
   border-radius: 50%;
 }
+
+.update-info form {
+  display: none;
+}
+
+.update-pfp {
+  visibility: hidden;
+}

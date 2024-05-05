@@ -60,7 +60,7 @@ if (isset($_POST["register"])) {
                                 <input type="text" name="lname" required id="inputLname1" class="form-control my-4 py-2" placeholder="Surname *">
                                 <input type="email" name="email" required id="inputEmail" class="form-control my-4 py-2" placeholder="Email *">
                                 <input type="password" name="pass" required id="inputPassword" class="form-control my-4 py-2" placeholder="Password *">
-                                <input type="date" name="date" required id="inputPassword" class="form-control my-4 py-2" placeholder="">
+
                                 <div class="text-center mt-3 but">
                                     <button type="submit" name="register" value="Submit" class="btn btn-success">Register</button>
                                     <a href="login.php" class="nav-link">Already have an account? Login!</a>

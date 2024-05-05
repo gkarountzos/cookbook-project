@@ -1,11 +1,6 @@
 <?php
-// session_start();
 
-include 'guest_header.php';
-
-if (isset($_POST["to_register"])) {
-    header("Location:register.php");
-}
+session_start();
 
 if (isset($_POST["login"])) {
     include 'connect.php';
@@ -17,14 +12,12 @@ if (isset($_POST["login"])) {
     $result = mysqli_query($conn, $sql);
 
     if (!$row = mysqli_fetch_assoc($result)) {
-        echo "<script> alert ('Wrong credentials!')</script>";
+        echo "<script> alert ('Τα στοιχεία που έδωσες είναι λάθος!')</script>";
     } else {
-
         $_SESSION["fname"] = $row["fname"];
         $_SESSION["lname"] = $row["lname"];
         $_SESSION["id"] = $row["id"];
-
-        session_start();
+        // var_dump($_SESSION);
         header("Location:homepage.php");
     }
 }
@@ -43,6 +36,10 @@ if (isset($_POST["login"])) {
 
 <body>
 
+    <?php
+    include 'user_header.php';
+    ?>
+
     <section id="login-form">
         <div class="container mt-5 pt-5 ">
             <div class="row">
@@ -52,7 +49,7 @@ if (isset($_POST["login"])) {
                             <div class="text-center logo-form">
                                 <img src="images/cookbook-logo.png">
                             </div>
-                            <form action="homepage.php" method="POST">
+                            <form class="login-form" action="login.php" method="POST">
                                 <input type="email" name="email" required id="inputEmail" class="form-control my-4 py-2" placeholder="Email">
                                 <input type="password" name="pass" id="inputLname" class="form-control my-4 py-2" placeholder="Password">
                                 <div class="but text-center mt-3">

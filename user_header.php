@@ -1,12 +1,3 @@
-<?php
-if (isset($_POST["logout"])) {
-    session_destroy();
-    header('Location:homepage.php');
-}
-?>
-
-
-
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -20,26 +11,51 @@ if (isset($_POST["logout"])) {
                     <button class="btn" type="submit"><img src="images/magnifying-glass.png"></button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><?php echo "Hi " . $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
-                    </li>
+                    <?php
+                    if (isset($_SESSION["fname"])) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profilepage.php"><?php echo "Hi " . $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
+                        </li>
 
-                    <li class="nav-item btn-group dropstart">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <form action="" method="POST">
-                                <a class="dropdown-item" href="">Settings</a>
-                                <div class="text-center mt-3">
-                                    <button type="submit" name="logout" class="btn btn-danger">Disconnect</button>
-                                </div>
-                            </form>
+                        <li class="nav-item btn-group dropstart">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Settings
+                            </a>
+                            <ul class="dropdown-menu">
+                                <form action="logout.php" method="POST">
+                                    <a class="dropdown-item" href="settings.php">Settings</a>
+                                    <div class="text-center mt-3">
+                                        <button type="submit" name="logout" class="btn btn-danger">Disconnect</button>
+                                    </div>
+                                </form>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    <?php } else { ?>
+                        <li class="nav-item btn-group">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Welcome! Create an account or login.
+                            </a>
+                            <ul class="dropdown-menu">
+                                <form action="login.php" method="POST">
+                                    <div class="text-center mt-3">
+                                        <button type="submit" name="to_login" class="btn btn-primary">Login</button>
+                                    </div>
+                                </form>
+                                <form action="register.php" method="POST">
+                                    <div class="text-center mt-3">
+                                        <button type="submit" name="to_register" class="btn btn-success">Register</button>
+                                    </div>
+                                </form>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

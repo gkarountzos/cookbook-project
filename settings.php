@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ?>
 
@@ -15,10 +14,10 @@ session_start();
 </head>
 
 <body>
-
     <?php
     include 'user_header.php';
     ?>
+
 
 
     <script src="script.js"></script>

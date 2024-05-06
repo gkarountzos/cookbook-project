@@ -15,6 +15,7 @@ $user = $_SESSION["id"];
     <link rel="stylesheet" href="css\style.css">
 
     <script src="script\script.js" defer></script>
+
 </head>
 
 <body>
@@ -35,17 +36,17 @@ $user = $_SESSION["id"];
                                 <button type="submit" id="togglePfp" name="pfp" class="btn btn-primary togglePfp">Profile Picture</button>
                                 <button type="submit" id="toggleInfo" name="info" class="btn btn-success">Personal Information</button>
                             </form>
-                            <!-- <div class="update-info" style="display:none;">
+                            <div class="update-info" style="visibility:hidden;">
                                 <form action="settings.php" method="POST">
                                     <input type="password" name="old-pass" required class="form-control my-4 py-2" placeholder="Παλιός κωδικός *">
                                     <input type="password" name="new-pass" required class="form-control my-4 py-2" placeholder="Νέος κωδικός *">
                                     <input type="password" name="conf-new-pass" required class="form-control my-4 py-2" placeholder="Επιβεβαίωση νέου κωδικού *">
 
                                     <div class="text-center mt-3">
-                                        <button type="submit" name="update_info" class="btn btn-success">Update</button>
+                                        <button type="submit" name="update-info" class="btn btn-success">Update</button>
                                     </div>
                                 </form>
-                            </div> -->
+                            </div>
 
                             <div class="update-pfp" style="visibility:hidden;">
                                 <form action="settings.php" method="POST">
@@ -53,10 +54,12 @@ $user = $_SESSION["id"];
                                         <label class="form-label">Profile Picture</label>
                                         <input type="file" class="form-control" name="avatar">
                                         <img src="upload/<?php $user['avatar'] ?>" class="rounded-circle">
-                                        <input type="text" hidden="hidden" name="old_pp" value="<?php $user['avatar'] ?>">
+                                        <input type="text" hidden="hidden" name="old_pfp" value="<?php $user['avatar'] ?>">
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <div class="text-center mt-3">
+                                        <button type="submit" name="update-pfp" class="btn btn-success">Update</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -65,6 +68,7 @@ $user = $_SESSION["id"];
             </div>
         </div>
     </section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

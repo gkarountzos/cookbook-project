@@ -47,7 +47,7 @@ $user = $_SESSION["id"];
                                     </div>
                                 </form>
                             </div>
-                            <!-- idk -->
+                            <!-- idk- -->
                             <div class="update-pfp" style="visibility:hidden;">
                                 <form action="settings.php" method="POST">
                                     <div class="mb-3">

@@ -35,18 +35,6 @@ nav button img {
   border-radius: 50%;
 }
 
-.update-info form {
-  display: none;
-}
-
-.update-pfp {
-  visibility: hidden;
-}
-
-.upload {
-  padding-top: 3rem;
-}
-
 .form-style {
   background-color: var(--maincolor);
   color: var(--secondary);
@@ -60,4 +48,16 @@ textarea {
   max-height: 200px; /* Maximum height */
   min-width: 100%;
   min-height: 100px; /* Minimum height */
+}
+
+.upload {
+  padding-top: 3rem;
+}
+
+#updateinfo {
+  display: none;
+}
+
+#updatepfp {
+  display: none;
 }

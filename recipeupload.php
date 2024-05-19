@@ -9,7 +9,7 @@ if (isset($_POST['share'])) {
     $tempname = $_FILES['image']['tmp_name'];
     $folder = 'uploadedImages/' . $file_name;
 
-    $query = mysqli_query($conn, "INSERT INTO posts (pname, pdescription, pimage) 
+    $query = mysqli_query($conn, "INSERT INTO recipes (rname, rdescription, rimage) 
                                        VALUES ('$r_name', '$r_description', '$file_name')");
 
     if (move_uploaded_file($tempname, $folder)) {

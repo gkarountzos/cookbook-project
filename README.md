@@ -4,7 +4,7 @@ This web application is a project platform designed for academic purposes, provi
 
 ## Browsing without an account
 
-- A user can browse the platform without an account, being able to see the content it provides but without being able to comment or like anything.
+- Users can browse the platform without an account, being able to see the content it provides but without being able to comment or like anything.
 
 ## Users can register or login with an existing account.
 

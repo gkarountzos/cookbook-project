@@ -12,7 +12,7 @@ if (isset($_POST["login"])) {
     $result = mysqli_query($conn, $sql);
 
     if (!$row = mysqli_fetch_assoc($result)) {
-        echo "<script> alert ('Τα στοιχεία που έδωσες είναι λάθος!')</script>";
+        echo "<script> alert ('Wrong Credentials!')</script>";
     } else {
         $_SESSION["fname"] = $row["fname"];
         $_SESSION["lname"] = $row["lname"];

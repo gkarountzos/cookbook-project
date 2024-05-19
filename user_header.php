@@ -17,7 +17,10 @@
                             <a class="nav-link" href="profilepage.php"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
+                            <a class="nav-link" aria-current="page" href="recipeupload.php">Share your Recipe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="homepage.php">Home</a>
                         </li>
 
                         <li class="nav-item btn-group dropstart">

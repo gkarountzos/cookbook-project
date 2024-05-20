@@ -19,9 +19,6 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="recipeupload.php">Share your Recipe</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="homepage.php">Home</a>
-                        </li>
 
                         <li class="nav-item btn-group dropstart">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Settings
@@ -56,7 +53,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
+                            <a class="nav-link" aria-current="page" href="homepage.php">Home</a>
                         </li>
                     <?php } ?>
                 </ul>

@@ -1,6 +1,21 @@
 <?php
 session_start();
+include 'connect.php';
+$user = $_SESSION["id"];
 
+// Fetch user data including the avatar from the database
+$query = "SELECT avatar FROM users WHERE id = '$user'";
+$result = mysqli_query($conn, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    // Fetch the avatar filename
+    $row = mysqli_fetch_assoc($result);
+    $avatar = $row['avatar'];
+} else {
+    $avatar = 'profileImages/default_avatar.jpg';
+}
+
+mysqli_free_result($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +32,14 @@ session_start();
     <?php
     include 'user_header.php';
     ?>
+
+    <div class="pfp">
+        <img src="profileImages/<?php echo $avatar; ?>" class="img-fluid" alt="Avatar">
+    </div>
+    <br>
+    <div class="name">
+        <h1><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"] ?></h1>
+    </div>
 
 
 

@@ -54,10 +54,27 @@ textarea {
   padding-top: 3rem;
 }
 
-#updateinfo {
+#updateInfo {
   display: none;
 }
 
-#updatepfp {
+#updatePfp {
   display: none;
+}
+
+.pfp {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pfp img {
+  width: 10%;
+  border-radius: 50%;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

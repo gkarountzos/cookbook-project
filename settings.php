@@ -105,6 +105,7 @@ if (isset($_POST["update-info"])) {
                             <!-- info form -->
                             <div class="update-info" id="updateInfo">
                                 <form action="settings.php" method="POST">
+                                    <label class="form-label">Change Password</label>
                                     <input type="password" name="old-pass" required class="form-control my-4 py-2" placeholder="Old Password *">
                                     <input type="password" name="new-pass" required class="form-control my-4 py-2" placeholder="New Password *">
                                     <input type="password" name="conf-new-pass" required class="form-control my-4 py-2" placeholder="Confirm New Password *">

@@ -1,5 +1,4 @@
 <?php
-include 'guest_header.php';
 
 if (isset($_POST["to_login"])) {
     header("Location:login.php");
@@ -45,6 +44,10 @@ if (isset($_POST["register"])) {
 </head>
 
 <body>
+
+    <?php
+    include 'user_header.php';
+    ?>
 
     <section id="register-form">
         <div class="container mt-5 pt-5">

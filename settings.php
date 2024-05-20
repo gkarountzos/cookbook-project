@@ -43,8 +43,6 @@ if (isset($_POST["update-info"])) {
         echo "<script> alert ('Passwords do not match.')</script>";
     } else if ($_SESSION["id"]) {
 
-        // $myuser_id = $_SESSION["id"];
-
         $sql_update = "UPDATE users SET password = '$new_pass' WHERE id='$user' AND password = '$old_pass'";
         $result = mysqli_query($conn, $sql_update);
 

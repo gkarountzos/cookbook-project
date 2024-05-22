@@ -3,14 +3,15 @@ session_start();
 include 'connect.php';
 
 if (isset($_POST['share'])) {
+    $user_id = $_SESSION['id'];
     $r_name = $_POST['rname'];
     $r_description = $_POST['rdescription'];
     $file_name = $_FILES['image']['name'];
     $tempname = $_FILES['image']['tmp_name'];
     $folder = 'uploadedImages/' . $file_name;
 
-    $query = mysqli_query($conn, "INSERT INTO recipes (rname, rdescription, rimage) 
-                                       VALUES ('$r_name', '$r_description', '$file_name')");
+    $query = mysqli_query($conn, "INSERT INTO recipes (rname, rdescription, rimage, user_id) 
+                                       VALUES ('$r_name', '$r_description', '$file_name', '$user_id')");
 
     if (move_uploaded_file($tempname, $folder)) {
         echo "<script> alert ('Your recipe has been shared!')</script>";

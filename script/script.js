@@ -28,3 +28,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const likeButtons = document.querySelectorAll(".like-button");
+
+likeButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const recipeId = this.getAttribute("data-recipe-id");
+    const likeCountSpan = this.querySelector(".like-count");
+
+    fetch("like.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: recipeId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          if (data.liked) {
+            this.textContent = `Dislike (${data.newLikeCount})`;
+          } else {
+            this.textContent = `Like (${data.newLikeCount})`;
+          }
+          likeCountSpan.textContent = data.newLikeCount;
+        } else {
+          alert(data.message);
+        }
+      });
+  });
+});

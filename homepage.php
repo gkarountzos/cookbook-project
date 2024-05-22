@@ -30,7 +30,7 @@ session_start();
             <?php
             include 'connect.php';
 
-            $query = "SELECT r.*, u.fname, u.avatar FROM recipes r INNER JOIN users u ON r.user_id = u.id ORDER BY r.id DESC";
+            $query = "SELECT r.*, u.fname, u.lname, u.avatar FROM recipes r INNER JOIN users u ON r.user_id = u.id ORDER BY r.id DESC";
             $result = mysqli_query($conn, $query);
 
             if ($result && mysqli_num_rows($result) > 0) {
@@ -38,13 +38,13 @@ session_start();
                 echo "<div class='container cards'>";  // Added a container
                 echo "<div class='row'>";  // Added a row
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<div class='col-12 mb-4'>";  // Full width column
+                    echo "<div class='post-feed col-12 mb-4 m-auto'>";
                     echo "<div class='card'>";
                     echo "<img class='card-img-top fixed-size' src='uploadedImages/" . $row['rimage'] . "' alt='" . $row['rname'] . "'>";
                     echo "<div class='card-body'>";
-                    echo "<h3 class='card_title'>" . $row['rname'] . "</h3>";
-                    echo "<p class='card_text'>" . $row['rdescription'] . "</p>";
-                    echo "<p class='card_text'><small class='text-muted'>Recipe by: " . $row['fname'] . "</small></p>";
+                    echo "<h3 class='card-title'>" . $row['rname'] . "</h3>";
+                    echo "<p class='card-text'>" . $row['rdescription'] . "</p>";
+                    echo "<p class='card-text'><small class='text-muted'>Recipe by: " . $row['fname'] . " " . $row['lname'] . "</small></p>";
                     echo "<div class='like-section'>";
                     echo "<button class='btn btn-primary like-button' data-recipe-id='" . $row['id'] . "'>";
                     echo "Like (<span class='like-count'>" . $row['rlikes'] . "</span>)";

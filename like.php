@@ -55,5 +55,5 @@ if (isset($data['id']) && isset($_SESSION['id'])) {
         echo json_encode(['success' => false, 'message' => 'Error updating like count.']);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Invalid request.']);
+    echo json_encode(['success' => false, 'message' => 'Login or register to interact with our content.']);
 }

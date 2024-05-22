@@ -47,7 +47,7 @@ likeButtons.forEach((button) => {
       .then((data) => {
         if (data.success) {
           if (data.liked) {
-            this.textContent = `Dislike (${data.newLikeCount})`;
+            this.textContent = `Remove Like (${data.newLikeCount})`;
           } else {
             this.textContent = `Like (${data.newLikeCount})`;
           }

@@ -43,7 +43,7 @@ nav button img {
   color: var(--secondary);
   padding: 20px;
   border-radius: 5px;
-  width: 30%;
+  width: 500px;
 }
 
 textarea {
@@ -111,4 +111,15 @@ textarea {
   object-fit: cover;
   display: block;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 550px) {
+  .card {
+    width: 100%;
+  }
+
+  .form-style {
+    margin-inline: 24px;
+    width: 100%;
+  }
 }

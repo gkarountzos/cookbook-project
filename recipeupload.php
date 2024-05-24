@@ -45,15 +45,15 @@ if (isset($_POST['share'])) {
         <form action="recipeupload.php" method="POST" class="row gx-3 gy-2 form-style" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="recipe-name" class="form-label">Name Your Recipe</label>
-                <input type="text" class="form-control" name="rname" id="rname" placeholder="E.g. Grandma's secret sauce...">
+                <input type="text" class="form-control" name="rname" required id="rname" placeholder="E.g. Grandma's secret sauce...">
             </div>
             <div class="mb-3">
                 <label for="recipe-description" class="form-label">Recipe Instructions</label>
-                <textarea class="form-control" name="rdescription" id="rdescription" rows="3"></textarea>
+                <textarea class="form-control" name="rdescription" required id="rdescription" rows="3"></textarea>
             </div>
             <input type="file" name="image">
             <div class="col-12">
-                <button type="submit" name="share" class="btn btn-primary">Share!</button>
+                <button type="submit" name="share" required class="btn btn-primary">Share!</button>
             </div>
         </form>
     </div>

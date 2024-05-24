@@ -22,6 +22,7 @@ session_start();
     <div class="backdrop"></div>
 
     <?php
+    // includes the user header php file which contains the navbar
     include 'user_header.php';
     ?>
 
@@ -46,7 +47,7 @@ session_start();
                     echo "<div class='card-body'>";
                     echo "<h3 class='card-title'>" . htmlspecialchars($row['rname']) . "</h3>";
                     echo "<p class='card-text'>" . htmlspecialchars($row['rdescription']) . "</p>";
-                    echo "<p class='card-text'><small class='text-muted'>Recipe by: " . htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']) . "</small></p>";
+                    echo "<p class='card-text'><small class='text-muted'>By " . htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']) . "</small></p>";
                     echo "<div class='like-section'>";
                     echo "<button class='btn btn-primary like-button' data-recipe-id='" . $row['id'] . "'>";
                     echo "Like (<span class='like-count'>" . $row['rlikes'] . "</span>)";
@@ -82,7 +83,7 @@ session_start();
                 echo "</div>";  // Close row
                 echo "</div>";  // Close container
             } else {
-                echo "<p class='error-msg'> No recipes uploaded.</p>";
+                echo "<h3 class='text-center error-msg'> No recipes have been uploaded yet. Upload by loging in or registering!</h3>";
             }
             ?>
 

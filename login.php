@@ -1,27 +1,38 @@
 <?php
-
+// starts a session to manage user authentication
 session_start();
 
+// checks if the login form has been submitted
 if (isset($_POST["login"])) {
+
+    // includes the file containing the database connection
     include 'connect.php';
+
+    // retrieves email and password from the form
     $email = $_POST["email"];
     $pass = $_POST["pass"];
 
+    // prepares SQL query to select user with provided email and password
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
 
+    // execute the SQL query
     $result = mysqli_query($conn, $sql);
 
+    // checks if there is a result returned from the query
     if (!$row = mysqli_fetch_assoc($result)) {
+        // if no result is found, it displays an error message
         echo "<script> alert ('Wrong Credentials!')</script>";
     } else {
+        // if a matching user is found, it sets session variables for users first name, last name, and ID
         $_SESSION["fname"] = $row["fname"];
         $_SESSION["lname"] = $row["lname"];
         $_SESSION["id"] = $row["id"];
-        // var_dump($_SESSION);
+        // redirects the user to the homepage after successful login
         header("Location:homepage.php");
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,22 +1,28 @@
 <?php
 session_start();
+
 include 'connect.php';
+
+// gets the user id from the session
 $user = $_SESSION["id"];
 
-// Fetch user data including the avatar from the database
+// initializes the avatar variable with a default value
+$avatar = 'profileImages/default_avatar.jpg';
+
+// query to the database to fetch the users avatar
 $query = "SELECT avatar FROM users WHERE id = '$user'";
 $result = mysqli_query($conn, $query);
 
+// checks if the query was successful and if there are any rows returned
 if ($result && mysqli_num_rows($result) > 0) {
-    // Fetch the avatar filename
+    // fetches the row containing the avatar filename
     $row = mysqli_fetch_assoc($result);
+    // assigns the avatar filename to the $avatar variable
     $avatar = $row['avatar'];
-} else {
-    $avatar = 'profileImages/default_avatar.jpg';
 }
 
-mysqli_free_result($result);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

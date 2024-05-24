@@ -1,35 +1,44 @@
 <?php
-
+// checks if the user clicked on the "Login" button
 if (isset($_POST["to_login"])) {
-    header("Location:login.php");
+    // Redirect the user to the login page
+    header("Location: login.php");
 }
 
+// checks if the user submitted the registration form
 if (isset($_POST["register"])) {
-    //establish connection
+    // include the file containing the database connection
     include "connect.php";
 
+    // retrieves user input from the registration form
     $fname = $_POST["fname"];
     $lname = $_POST["lname"];
     $email = $_POST["email"];
     $pass = $_POST["pass"];
 
-    //email duplicate check
+    // checks if the email is already registered
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($sql);
-    //email duplicate check
+
+    // if there is a result, it means the email is already registered
     if ($result->num_rows > 0) {
+        // displays an alert message informing the user that the email is already registered
         echo "<script> alert ('The given email is already registered')</script>";
     } else {
-        //register user
-        $sql_register = "INSERT INTO users(fname,lname,email,password)
-                        VALUES('$fname','$lname','$email','$pass');";
+        // if the email is not registered, it proceeds with user registration
+
+        // sql query to insert the new user into the database
+        $sql_register = "INSERT INTO users(fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$pass')";
+
+        // executes the sql query to register the user
         $result_reg = $conn->query($sql_register);
-        //redirect to login
-        header("Location:login.php");
+
+        // redirects the user to the login page after successful registration
+        header("Location: login.php");
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

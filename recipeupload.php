@@ -3,20 +3,27 @@ session_start();
 include 'connect.php';
 
 if (isset($_POST['share'])) {
+    // gets the user ID from the session
     $user_id = $_SESSION['id'];
+
+    // retrieves recipe details from the form
     $r_name = $_POST['rname'];
     $r_description = $_POST['rdescription'];
     $file_name = $_FILES['image']['name'];
     $tempname = $_FILES['image']['tmp_name'];
     $folder = 'uploadedImages/' . $file_name;
 
+    // inserts the recipe details into the database
     $query = mysqli_query($conn, "INSERT INTO recipes (rname, rdescription, rimage, user_id) 
-                                       VALUES ('$r_name', '$r_description', '$file_name', '$user_id')");
+                                  VALUES ('$r_name', '$r_description', '$file_name', '$user_id')");
 
+    // checks if the file is successfully uploaded
     if (move_uploaded_file($tempname, $folder)) {
+        // displays a success message if the recipe is shared
         echo "<script> alert ('Your recipe has been shared!')</script>";
     } else {
-        echo "<script> alert ('An error occured while sharing your recipe.')</script>";
+        // displays an error message if theres an issue with uploading the file
+        echo "<script> alert ('An error occurred while sharing your recipe.')</script>";
     }
 }
 
@@ -57,11 +64,6 @@ if (isset($_POST['share'])) {
             </div>
         </form>
     </div>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

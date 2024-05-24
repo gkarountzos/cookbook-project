@@ -35,25 +35,49 @@ session_start();
 
             if ($result && mysqli_num_rows($result) > 0) {
                 echo "<h2 class='title-for-recipes'>User Recipes</h2>";
-                echo "<div class='container cards'>";  // Added a container
-                echo "<div class='row'>";  // Added a row
+                echo "<div class='container cards'>";
+                echo "<div class='row'>";
                 while ($row = mysqli_fetch_assoc($result)) {
+                    $recipeId = $row['id'];
+
                     echo "<div class='post-feed col-12 mb-4 m-auto'>";
                     echo "<div class='card'>";
-                    echo "<img class='card-img-top fixed-size' src='uploadedImages/" . $row['rimage'] . "' alt='" . $row['rname'] . "'>";
+                    echo "<img class='card-img-top fixed-size' src='uploadedImages/" . htmlspecialchars($row['rimage']) . "' alt='" . htmlspecialchars($row['rname']) . "'>";
                     echo "<div class='card-body'>";
-                    echo "<h3 class='card-title'>" . $row['rname'] . "</h3>";
-                    echo "<p class='card-text'>" . $row['rdescription'] . "</p>";
-                    echo "<p class='card-text'><small class='text-muted'>Recipe by: " . $row['fname'] . " " . $row['lname'] . "</small></p>";
+                    echo "<h3 class='card-title'>" . htmlspecialchars($row['rname']) . "</h3>";
+                    echo "<p class='card-text'>" . htmlspecialchars($row['rdescription']) . "</p>";
+                    echo "<p class='card-text'><small class='text-muted'>Recipe by: " . htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']) . "</small></p>";
                     echo "<div class='like-section'>";
                     echo "<button class='btn btn-primary like-button' data-recipe-id='" . $row['id'] . "'>";
                     echo "Like (<span class='like-count'>" . $row['rlikes'] . "</span>)";
                     echo "</button>";
                     echo "</div>";
 
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
+                    // Fetch and display comments
+                    echo "<div class='comment-section'>";
+                    $commentsQuery = "SELECT c.*, u.fname FROM comments c INNER JOIN users u ON c.user_id = u.id WHERE c.recipe_id = $recipeId ORDER BY c.comment_date DESC";
+                    $commentsResult = mysqli_query($conn, $commentsQuery);
+                    if ($commentsResult && mysqli_num_rows($commentsResult) > 0) {
+                        echo "<h5>Comments</h5>";
+                        while ($comment = mysqli_fetch_assoc($commentsResult)) {
+                            echo "<p><strong>" . htmlspecialchars($comment['fname']) . "</strong> on " . htmlspecialchars($comment['comment_date']) . ":</p>";
+                            echo "<p>" . htmlspecialchars($comment['comment_text']) . "</p>";
+                        }
+                    } else {
+                        echo "<p>No comments yet.</p>";
+                    }
+
+                    // Comment form
+                    echo "<form action='post_comment.php' method='POST'>";
+                    echo "<input type='hidden' name='recipe_id' value='$recipeId'>";
+                    echo "<textarea name='comment_text' rows='4' cols='50' placeholder='Write your comment here'></textarea>";
+                    echo "<button type='submit' class='btn btn-secondary'>Post Comment</button>";
+                    echo "</form>";
+                    echo "</div>"; // Close comment-section
+
+                    echo "</div>"; // Close card-body
+                    echo "</div>"; // Close card
+                    echo "</div>"; // Close post-feed
                 }
                 echo "</div>";  // Close row
                 echo "</div>";  // Close container
@@ -61,6 +85,8 @@ session_start();
                 echo "<p class='error-msg'> No recipes uploaded.</p>";
             }
             ?>
+
+
 
 
         </div>

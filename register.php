@@ -12,7 +12,6 @@ if (isset($_POST["register"])) {
     $lname = $_POST["lname"];
     $email = $_POST["email"];
     $pass = $_POST["pass"];
-    $dob = $_POST["date"];
 
     //email duplicate check
     $sql = "SELECT * FROM users WHERE email='$email'";
@@ -22,8 +21,8 @@ if (isset($_POST["register"])) {
         echo "<script> alert ('The given email is already registered')</script>";
     } else {
         //register user
-        $sql_register = "INSERT INTO users(fname,lname,email,password,dob)
-                        VALUES('$fname','$lname','$email','$pass',$dob);";
+        $sql_register = "INSERT INTO users(fname,lname,email,password)
+                        VALUES('$fname','$lname','$email','$pass');";
         $result_reg = $conn->query($sql_register);
         //redirect to login
         header("Location:login.php");

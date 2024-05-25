@@ -60,7 +60,6 @@ likeButtons.forEach((button) => {
         // handles the response
         if (data.success) {
           // updates the button text(1,2,3 etc) and like count based on whether the recipe was liked or unliked
-
           if (data.liked) {
             this.textContent = `Remove Like (${data.newLikeCount})`;
           } else {

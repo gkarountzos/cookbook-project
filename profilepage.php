@@ -3,20 +3,15 @@ session_start();
 
 include 'connect.php';
 
-// gets the user id from the session
-$user = $_SESSION["id"];
+$user = $_SESSION["id"]; // gets the user id from the session
 
-
-// query to the database to fetch the users avatar
-$query = "SELECT avatar FROM users WHERE id = '$user'";
+$query = "SELECT avatar FROM users WHERE id = '$user'"; // query to the database to fetch the users avatar
 $result = mysqli_query($conn, $query);
 
-// checks if the query was successful and if there are any rows returned
-if ($result && mysqli_num_rows($result) > 0) {
-    // fetches the row containing the avatar filename
-    $row = mysqli_fetch_assoc($result);
-    // assigns the avatar filename to the $avatar variable
-    $avatar = $row['avatar'];
+
+if ($result && mysqli_num_rows($result) > 0) { // checks if the query was successful and if there are any rows returned
+    $row = mysqli_fetch_assoc($result); // fetches the row containing the avatar filename
+    $avatar = $row['avatar']; // assigns the avatar filename to the $avatar variable
 }
 
 ?>

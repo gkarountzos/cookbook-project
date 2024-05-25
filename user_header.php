@@ -9,7 +9,8 @@
 
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
                     <?php
-                    if (isset($_SESSION["fname"])) { ?>
+                    if (isset($_SESSION["fname"])) { // if a session exists then display the following navbar 
+                    ?>
                         <li class="nav-item">
                             <a class="nav-link" href="profilepage.php"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"] ?></a> <!-- towards profile -->
                         </li>
@@ -30,7 +31,8 @@
 
                             </ul>
                         </li>
-                    <?php } else { ?>
+                    <?php } else { //if a session does not exist display the following navbar 
+                    ?>
                         <li class="nav-item btn-group">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Welcome! Create an account or login.

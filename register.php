@@ -1,14 +1,12 @@
 <?php
-// checks if the user clicked on the "Login" button
-if (isset($_POST["to_login"])) {
-    // Redirect the user to the login page
-    header("Location: login.php");
+
+if (isset($_POST["to_login"])) { // checks if the user clicked on the login button
+    header("Location: login.php"); // redirects the user to the login page
 }
 
-// checks if the user submitted the registration form
-if (isset($_POST["register"])) {
-    // include the file containing the database connection
-    include "connect.php";
+
+if (isset($_POST["register"])) { // checks if the user submitted the registration form
+    include "connect.php"; // include the file containing the database connection
 
     // retrieves user input from the registration form
     $fname = $_POST["fname"];
@@ -16,25 +14,19 @@ if (isset($_POST["register"])) {
     $email = $_POST["email"];
     $pass = $_POST["pass"];
 
-    // checks if the email is already registered
+
     $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
+    $result = $conn->query($sql); // checks if the email is already registered
 
-    // if there is a result, it means the email is already registered
-    if ($result->num_rows > 0) {
-        // displays an alert message informing the user that the email is already registered
-        echo "<script> alert ('The given email is already registered')</script>";
-    } else {
-        // if the email is not registered, it proceeds with user registration
 
-        // sql query to insert the new user into the database
-        $sql_register = "INSERT INTO users(fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$pass')";
+    if ($result->num_rows > 0) { // if there is a result, it means the email is already registered
+        echo "<script> alert ('The given email is already registered')</script>"; // displays an alert message informing the user that the email is already registered
+    } else { // if the email is not registered, it proceeds with user registration
+        $sql_register = "INSERT INTO users(fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$pass')"; // sql query to insert the new user into the database
 
-        // executes the sql query to register the user
-        $result_reg = $conn->query($sql_register);
+        $result_reg = $conn->query($sql_register); // executes the query to register the user
 
-        // redirects the user to the login page after successful registration
-        header("Location: login.php");
+        header("Location: login.php"); // redirects the user to the login page after successful registration
     }
 }
 ?>

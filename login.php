@@ -1,34 +1,26 @@
 <?php
-// starts a session to manage user authentication
-session_start();
+session_start(); // starts a session to manage user authentication
 
-// checks if the login form has been submitted
-if (isset($_POST["login"])) {
+if (isset($_POST["login"])) { // checks if the login form has been submitted
 
-    // includes the file containing the database connection
-    include 'connect.php';
+    include 'connect.php'; // includes the file containing the database connection
 
     // retrieves email and password from the form
     $email = $_POST["email"];
     $pass = $_POST["pass"];
 
-    // prepares SQL query to select user with provided email and password
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
+    $sql = "SELECT * FROM users WHERE email='$email' AND password='$pass'"; //query to select user with provided email and password
+    $result = mysqli_query($conn, $sql); // executes the SQL query
 
-    // execute the SQL query
-    $result = mysqli_query($conn, $sql);
 
-    // checks if there is a result returned from the query
-    if (!$row = mysqli_fetch_assoc($result)) {
-        // if no result is found, it displays an error message
-        echo "<script> alert ('Wrong Credentials!')</script>";
+    if (!$row = mysqli_fetch_assoc($result)) { // checks if there is a result returned from the query
+        echo "<script> alert ('Wrong Credentials!')</script>"; // if no result is found, it displays an error message
     } else {
-        // if a matching user is found, it sets session variables for users first name, last name, and ID
+        // if a matching user is found, it sets session varables for users fname, lname, id
         $_SESSION["fname"] = $row["fname"];
         $_SESSION["lname"] = $row["lname"];
         $_SESSION["id"] = $row["id"];
-        // redirects the user to the homepage after successful login
-        header("Location:homepage.php");
+        header("Location:homepage.php"); // redirects the user to the homepage after successful login
     }
 }
 ?>
@@ -48,7 +40,7 @@ if (isset($_POST["login"])) {
 <body>
 
     <?php
-    include 'user_header.php';
+    include 'user_header.php'; //includes the user_header.php file which is the navbar
     ?>
 
     <section id="login-form">

@@ -1,36 +1,26 @@
 <?php
-session_start();
-// includes the database connection
+session_start(); // includes the database connection
 include 'connect.php';
 
-// checks if the required POST data and session variable are set
-if (isset($_POST['comment_text']) && isset($_POST['recipe_id']) && isset($_SESSION['id'])) {
+if (isset($_POST['comment_text']) && isset($_POST['recipe_id']) && isset($_SESSION['id'])) { // checks if the required POST data and session variable are set
 
-    // converts special PHP characters into harmless versions
-    $commentText = mysqli_real_escape_string($conn, $_POST['comment_text']);
+    $commentText = mysqli_real_escape_string($conn, $_POST['comment_text']); // converts special PHP characters into harmless versions for security reasons
+    $recipeId = $_POST['recipe_id'];
 
-    // converts the recipe id to an integer
-    $recipeId = intval($_POST['recipe_id']);
+    $userId = $_SESSION['id']; // gets the user id from the session
 
-    // gets the user id from the session
-    $userId = $_SESSION['id'];
-
-    // sql query to insert the comment into the database
     $query = "INSERT INTO comments (recipe_id, user_id, comment_text, comment_date) 
-              VALUES ($recipeId, $userId, '$commentText', NOW())";
+              VALUES ($recipeId, $userId, '$commentText', NOW())"; // sql query to insert the comment into the database
 
-    // executes the query
-    $result = mysqli_query($conn, $query);
 
-    // checks if the query was successful
-    if ($result) {
-        // redirects the user to the homepage where the recipes are
-        header("Location: homepage.php");
+    $result = mysqli_query($conn, $query); // executes the query
+
+
+    if ($result) { // checks if the query was successful
+        header("Location: homepage.php"); // redirects the user to the homepage where the recipes are
     } else {
-        // displays an error message if the query has failed
-        echo "<script>alert('Error posting comment');</script>";
+        echo "<script>alert('Error posting comment');</script>"; // displays an error message if the query has failed
     }
 } else {
-    // displays a message prompting the user to login or register if required data is missing
-    echo "<script>alert('Login or register to interact with our content.');</script>";
+    echo "<script>alert('Login or register to interact with our content.');</script>"; // displays a message prompting the user to login or register if required data is missing
 }

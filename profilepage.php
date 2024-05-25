@@ -6,8 +6,6 @@ include 'connect.php';
 // gets the user id from the session
 $user = $_SESSION["id"];
 
-// initializes the avatar variable with a default value
-$avatar = 'profileImages/default_avatar.jpg';
 
 // query to the database to fetch the users avatar
 $query = "SELECT avatar FROM users WHERE id = '$user'";

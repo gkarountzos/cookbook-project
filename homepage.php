@@ -22,8 +22,7 @@ session_start();
     <div class="backdrop"></div>
 
     <?php
-    // includes the user header php file which contains the navbar
-    include 'user_header.php';
+    include 'user_header.php'; // includes the user header php file which contains the navbar
     ?>
 
     <section id="recipe_posts">
@@ -31,61 +30,67 @@ session_start();
             <?php
             include 'connect.php';
 
-            $query = "SELECT r.*, u.fname, u.lname, u.avatar FROM recipes r INNER JOIN users u ON r.user_id = u.id ORDER BY r.id DESC";
+
+            $query = "SELECT r.*, u.fname, u.lname, u.avatar FROM recipes r INNER JOIN users u ON r.user_id = u.id ORDER BY r.id DESC"; // query to fetch recipes and user details
             $result = mysqli_query($conn, $query);
 
-            if ($result && mysqli_num_rows($result) > 0) {
+
+            if ($result && mysqli_num_rows($result) > 0) { // checks if the query returned any results
                 echo "<h2 class='title-for-recipes'>User Recipes</h2>";
                 echo "<div class='container cards'>";
                 echo "<div class='row'>";
-                while ($row = mysqli_fetch_assoc($result)) {
+
+
+                while ($row = mysqli_fetch_assoc($result)) { // loops as many times to create cards as many rows exist
                     $recipeId = $row['id'];
 
                     echo "<div class='post-feed col-12 mb-4 m-auto'>";
                     echo "<div class='card'>";
                     echo "<img class='card-img-top fixed-size' src='uploadedImages/" . htmlspecialchars($row['rimage']) . "' alt='" . htmlspecialchars($row['rname']) . "'>";
                     echo "<div class='card-body'>";
-                    echo "<h3 class='card-title'>" . htmlspecialchars($row['rname']) . "</h3>";
-                    echo "<p class='card-text'>" . htmlspecialchars($row['rdescription']) . "</p>";
+                    echo "<h3 class='card-title'>" . htmlspecialchars($row['rname']) . "</h3>"; // displays the recipe name
+                    echo "<p class='card-text'>" . htmlspecialchars($row['rdescription']) . "</p>"; // displays the description
+                    // displays the name of the user who made the psot
                     echo "<p class='card-text'><small class='text-muted'>By " . htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']) . "</small></p>";
+
                     echo "<div class='like-section'>";
-                    echo "<button class='btn btn-primary like-button' data-recipe-id='" . $row['id'] . "'>";
-                    echo "Like (<span class='like-count'>" . $row['rlikes'] . "</span>)";
+                    echo "<button class='btn btn-primary like-button' data-recipe-id='" . $row['id'] . "'>"; // display the like button and stores the recipe id
+                    echo "Like (<span class='like-count'>" . $row['rlikes'] . "</span>)"; // displays the current like count for the recipe id fetched from the table
                     echo "</button>";
                     echo "</div>";
 
-                    // Fetch and display comments
                     echo "<div class='comment-section'>";
+                    // query to fetch comments for the existing recipes
                     $commentsQuery = "SELECT c.*, u.fname FROM comments c INNER JOIN users u ON c.user_id = u.id WHERE c.recipe_id = $recipeId ORDER BY c.comment_date DESC";
-                    $commentsResult = mysqli_query($conn, $commentsQuery);
-                    if ($commentsResult && mysqli_num_rows($commentsResult) > 0) {
-                        echo "<h5>Comments</h5>";
-                        while ($comment = mysqli_fetch_assoc($commentsResult)) {
-                            echo "<p><strong>" . htmlspecialchars($comment['fname']) . "</strong> on " . htmlspecialchars($comment['comment_date']) . ":</p>";
-                            echo "<p>" . htmlspecialchars($comment['comment_text']) . "</p>";
+                    $commentsResult = mysqli_query($conn, $commentsQuery);                                                                                              //^
+
+                    if ($commentsResult && mysqli_num_rows($commentsResult) > 0) { // checks if there are any comments                                                       //^
+                        echo "<h5>Comments</h5>";                                                                                                                            //^
+                        while ($comment = mysqli_fetch_assoc($commentsResult)) { // loops through each comment and displays it in descending ordered based by the comment date ^
+                            echo "<p><strong>" . htmlspecialchars($comment['fname']) . " says: </strong> " . htmlspecialchars($comment['comment_text']) . "</p>";
                         }
                     } else {
-                        echo "<p>No comments yet.</p>";
+                        echo "<p>No comments yet.</p>"; // if no comments exist, it displays this message
                     }
 
-                    // Comment form
                     echo "<form action='post_comment.php' method='POST'>";
-                    echo "<input type='hidden' name='recipe_id' value='$recipeId'>";
+                    echo "<input type='hidden' name='recipe_id' value='$recipeId'>"; // hidden input field to store the recipe id
                     echo "<textarea name='comment_text' rows='4' cols='50' placeholder='Write your comment here'></textarea>";
                     echo "<button type='submit' class='btn btn-secondary'>Post Comment</button>";
                     echo "</form>";
-                    echo "</div>"; // Close comment-section
+                    echo "</div>"; // closes comment-section
 
-                    echo "</div>"; // Close card-body
-                    echo "</div>"; // Close card
-                    echo "</div>"; // Close post-feed
+                    echo "</div>"; // closes card-body
+                    echo "</div>"; // closes card
+                    echo "</div>"; // closes post-feed
                 }
-                echo "</div>";  // Close row
-                echo "</div>";  // Close container
+                echo "</div>";  // closes row
+                echo "</div>";  // closes container
             } else {
-                echo "<h3 class='text-center error-msg'> No recipes have been uploaded yet. Upload by loging in or registering!</h3>";
+                echo "<h3 class='text-center error-msg'> No recipes have been uploaded yet. Upload by logging in or registering!</h3>"; // if no recipes are found, it displays this message
             }
             ?>
+
 
 
 

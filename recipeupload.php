@@ -3,8 +3,7 @@ session_start();
 include 'connect.php';
 
 if (isset($_POST['share'])) {
-    // gets the user ID from the session
-    $user_id = $_SESSION['id'];
+    $user_id = $_SESSION['id']; // gets the user ID from the session
 
     // retrieves recipe details from the form
     $r_name = $_POST['rname'];
@@ -13,17 +12,14 @@ if (isset($_POST['share'])) {
     $tempname = $_FILES['image']['tmp_name'];
     $folder = 'uploadedImages/' . $file_name;
 
-    // inserts the recipe details into the database
     $query = mysqli_query($conn, "INSERT INTO recipes (rname, rdescription, rimage, user_id) 
-                                  VALUES ('$r_name', '$r_description', '$file_name', '$user_id')");
+                                  VALUES ('$r_name', '$r_description', '$file_name', '$user_id')"); // inserts the recipe details into the database
 
-    // checks if the file is successfully uploaded
-    if (move_uploaded_file($tempname, $folder)) {
-        // displays a success message if the recipe is shared
-        echo "<script> alert ('Your recipe has been shared!')</script>";
+
+    if (move_uploaded_file($tempname, $folder)) { // checks if the file is successfully uploaded
+        echo "<script> alert ('Your recipe has been shared!')</script>"; // displays a success message if the recipe is shared
     } else {
-        // displays an error message if theres an issue with uploading the file
-        echo "<script> alert ('An error occurred while sharing your recipe.')</script>";
+        echo "<script> alert ('An error occurred while sharing your recipe.')</script>"; // displays an error message if theres an issue with uploading the file
     }
 }
 

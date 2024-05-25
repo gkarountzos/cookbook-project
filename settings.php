@@ -2,71 +2,54 @@
 session_start();
 
 include 'connect.php';
-// retrieves the usersi d from the session
-$user = $_SESSION["id"];
+$user = $_SESSION["id"]; // retrieves the usersi d from the session
 
-// handles the profile picture update
-if (isset($_POST['update-pfp'])) {
-    // retrieves the usersi d from the session
-    $user = $_SESSION["id"];
+if (isset($_POST['update-pfp'])) { // handles the profile picture update
 
-    // retrieves the filename of the uploaded img
-    $file_name = $_FILES['avatar']['name'];
-    // temp path of the uploaded file
-    $tempname = $_FILES['avatar']['tmp_name'];
-    // destination folder to save the img
-    $folder = 'profileImages/' . $file_name;
+    $user = $_SESSION["id"]; // retrieves the usersi d from the session
+    $file_name = $_FILES['avatar']['name']; // retrieves the filename of the uploaded img
+    $tempname = $_FILES['avatar']['tmp_name']; // temp path of the uploaded file
+    $folder = 'profileImages/' . $file_name; // destination folder to save the img
 
-    // update query to update the avatar in the database
-    $query = "UPDATE users SET avatar = '$file_name' WHERE id = '$user'";
+    $query = "UPDATE users SET avatar = '$file_name' WHERE id = '$user'"; //query to update the avatar in the database
 
-    // executes the query to update the avatar
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query); // executes the query to update the avatar
 
-    // checks if the update was successful and the file was moved
-    if ($result && move_uploaded_file($tempname, $folder)) {
-        // displays a success message if the update is successful
-        echo "<script> alert ('Your picture has been updated!')</script>";
+    if ($result && move_uploaded_file($tempname, $folder)) { // checks if the update was successful and the file was moved
+        echo "<script> alert ('Your picture has been updated!')</script>"; // displays a success message if the update is successful
     } else {
-        // displays an error message if the update fails
-        echo "<script> alert ('An error occurred while updating your picture.')</script>";
+        echo "<script> alert ('An error occurred while updating your picture.')</script>"; // displays an error message if the update fails
     }
 }
 
-// handles profile picture deletion
-if (isset($_POST['delete-pfp'])) {
-    // sql query to update the avatar to NULL
-    $updateQuery = "UPDATE users SET avatar = NULL WHERE id = '$user'";
-    // executes the update query
-    if (mysqli_query($conn, $updateQuery)) {
-        // displays a success message if the deletion is successful
-        echo "<script>alert('Avatar deleted successfully.');</script>";
+
+if (isset($_POST['delete-pfp'])) { // handles profile picture deletion
+
+    $updateQuery = "UPDATE users SET avatar = NULL WHERE id = '$user'"; // query to update the avatar to NULL
+    if (mysqli_query($conn, $updateQuery)) { // executes the update query
+        echo "<script>alert('Avatar deleted successfully.');</script>"; // displays a success message if the deletion is successful
     } else {
-        // displays an error message if deletion fails
-        echo "<script>alert('Error deleting avatar.');</script>";
+        echo "<script>alert('Error deleting avatar.');</script>"; // displays an error message if deletion fails
     }
 }
 
-// handles password update
-if (isset($_POST["update-info"])) {
+
+if (isset($_POST["update-info"])) { // handles password update
     // retrieves old and new passwords from the form
     $old_pass = $_POST["old-pass"];
     $new_pass = $_POST["new-pass"];
     $conf_new_pass = $_POST["conf-new-pass"];
 
-    // Checks if new passwords match
-    if ($new_pass != $conf_new_pass) {
-        // display an error message if passwords do not match
-        echo "<script> alert ('Passwords do not match.')</script>";
-    } else if ($_SESSION["id"]) {
-        // if the session id exists, it updates the password in the database
+    if ($new_pass != $conf_new_pass) { // Checks if new passwords match
+        echo "<script> alert ('Passwords do not match.')</script>"; // display an error message if passwords do not match
+    } else if ($_SESSION["id"]) { // if the session id exists, it updates the password in the database
+
         $sql_update = "UPDATE users SET password = '$new_pass' WHERE id='$user' AND password = '$old_pass'";
         $result = mysqli_query($conn, $sql_update);
-        // displays a success message if the update is successful
-        echo "<script> alert ('The change was successful.')</script>";
+
+        echo "<script> alert ('The change was successful.')</script>"; // displays a success message if the update is successful
     } else {
-        // displays an error message if password change fails
-        echo "<script> alert ('Password change failed.')</script>";
+        echo "<script> alert ('Password change failed.')</script>"; // displays an error message if password change fails
     }
 }
 ?>

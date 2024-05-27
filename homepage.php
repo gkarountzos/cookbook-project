@@ -40,7 +40,6 @@ session_start();
                 echo "<div class='container cards'>";
                 echo "<div class='row'>";
 
-
                 while ($row = mysqli_fetch_assoc($result)) { // loops as many times to create cards as many rows exist
                     $recipeId = $row['id'];
 

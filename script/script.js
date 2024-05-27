@@ -1,45 +1,34 @@
-// sets variables for the profile picture button and the info button
-const togglePfpButton = document.getElementById("togglePfp");
-const toggleInfoButton = document.getElementById("toggleInfo");
+document.addEventListener("DOMContentLoaded", () => {
+  const togglePfpButton = document.getElementById("togglePfp");
+  const toggleInfoButton = document.getElementById("toggleInfo");
+  const updatePfpForm = document.getElementById("updatePfp");
+  const updateInfoForm = document.getElementById("updateInfo");
 
-// sets variables for the profile picture update form and the info update form
-const updatePfpForm = document.getElementById("updatePfp");
-const updateInfoForm = document.getElementById("updateInfo");
+  togglePfpButton.addEventListener("click", () => {
+    if (
+      updatePfpForm.style.display === "none" ||
+      updatePfpForm.style.display === ""
+    ) {
+      updatePfpForm.style.display = "block";
+      updateInfoForm.style.display = "none";
+    } else {
+      updatePfpForm.style.display = "none";
+    }
+  });
 
-togglePfpButton.addEventListener("click", () => {
-  // event listener on click to the profile picture button
-
-  if (
-    // checks if the profile picture form is currently hidden
-    updatePfpForm.style.display === "none" ||
-    updatePfpForm.style.display === ""
-  ) {
-    // shows the profile picture form and hides the info update form
-    updatePfpForm.style.display = "block";
-    updateInfoForm.style.display = "none";
-  } else {
-    updatePfpForm.style.display = "none"; //hides the profile picture form if it is currently visible
-  }
+  toggleInfoButton.addEventListener("click", () => {
+    if (
+      updateInfoForm.style.display === "none" ||
+      updateInfoForm.style.display === ""
+    ) {
+      updateInfoForm.style.display = "block";
+      updatePfpForm.style.display = "none";
+    } else {
+      updateInfoForm.style.display = "none";
+    }
+  });
 });
 
-toggleInfoButton.addEventListener("click", () => {
-  // event listener on click to the info button
-
-  if (
-    // checks if the info update form is currently hidden
-    updateInfoForm.style.display === "none" ||
-    updateInfoForm.style.display === ""
-  ) {
-    // shows the info form and hide the profile picture form
-    updateInfoForm.style.display = "block";
-    updatePfpForm.style.display = "none";
-  } else {
-    // hides the info form if it is currently visible
-    updateInfoForm.style.display = "none";
-  }
-});
-
-// gathers all elements with the class like-button
 const likeButtons = document.querySelectorAll(".like-button");
 
 // loop over each like button, adding an event listener on click
